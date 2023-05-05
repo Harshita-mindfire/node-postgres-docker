@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+    environment:
+      PORT: "3000"
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
